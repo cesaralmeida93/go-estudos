@@ -1,43 +1,57 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	// test := map[string]string{
-	// 	"test": "test",
+
+	// if retorno, err := test(); err != nil {
+	// 	fmt.Println("true")
+	// 	fmt.Println(retorno)
+	// 	fmt.Print(err)
 	// }
 
-	// var test2 interface{}
-
-	// test2 = 20.5
-
-	// testJson := map[string]interface{}{
-	// 	"test21323": "Test",
-	// 	"testst":    20,
+	// if 1 > 1 {
+	// 	fmt.Print("True")
+	// } else if 3 > 1 {
+	// 	fmt.Print("test")
+	// } else {
+	// 	fmt.Print("false")
 	// }
 
-	// var test []string = []string{"test", "test", "test", "test"}
+	// test := "test3"
 
-	// fmt.Println(len(test))
-	// fmt.Println(cap(test))
+	// switch test {
 
-	// test = append(test, "otavio")
+	// case "test", "test3":
+	// 	fmt.Print("CAIU NA PRIMEIRA CONDIÇÃO")
+	// 	fallthrough
 
-	// fmt.Println(len(test))
-	// fmt.Println(cap(test))
+	// case "test2":
+	// 	fmt.Print("CAIU NA SEGUNDA CONDIÇÃO")
+	// }
 
-	var user User = User{
-		name:  "otavio",
-		age:   20,
-		test2: "test2",
+
+	test := "test9"
+
+	switch test {
+
+	case "test", "test2", "test434", "test1323":
+		fmt.Print("CAIU NA PRIMEIRA CONDIÇÃO")
+
+	case "test3":
+		fmt.Print("CAIU NA SEGUNDA CONDIÇÃO")
+
+	case "test4":
+		fmt.Print("CAIU NA TERCEIRA CONDIÇÃO")	
+
+	default:
+		fmt.Print("CAIU NO DEFAULT")
 	}
 
-	fmt.Print(user)
-
 }
 
-type User struct {
-	name  string
-	age   int
-	test2 string
-}
+// func test() (string, error) {
+// 	return "test", errors.New("test")
+// }
