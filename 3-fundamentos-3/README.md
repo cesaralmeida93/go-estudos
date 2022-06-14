@@ -1,13 +1,6 @@
 # 2: Fundamentos da Linguagem III(funções, for, while e do-while)
 
-## Variáveis
-
-### Tipos Básicos:
-- Numbers
-- Booleans
-- Strings
-
-### Como instanciar variáveis:
+## For
 
 ```go
 package main
@@ -15,54 +8,16 @@ package main
 import "fmt"
 
 func main() {
-
-    var test string = "ewewewewew"
-    test1 := "ewewewewewe"
-}
-```
-
-```go
-package main
-
-import "fmt"
-
-func main() {
-
-    test1 := map[string]string{
-		"test": "test",
+	
+	for i := 0; i <= 5; i++ {
+		fmt.Println(i)
 	}
-    fmt.Printf("%T", test1)
-
-}
-```
-
-### Variáveis públicas e privadas:
-- primeira letra minúscula: privada
-- primeira letra maiúscula: pública
-
-```go
-package main
-
-import "fmt"
-
-func main() {
-
-    test := 30
-    fmt.Printf("%T", test)
-}
-
-func test() {
-
-}
-
-func Test() {
 	
 }
 ```
 
-### Tipos e tipo "any" (interface{}):
-- varável que aceita qualquer tipo de valor
-- útil para quando não se sabe o tipo do valor que será recebido
+### While?
+- não exite "while" nativo no go
 
 ```go
 package main
@@ -71,22 +26,17 @@ import "fmt"
 
 func main() {
 
-	var test2 interface{}
+	test := 0
 
-	test2 = 20
-
-	testJson := map[string]interface{}{
-		"test21323": "Test",
-		"testst": 20,
+	for test <= 10 {
+		fmt.Println("VALOR: ", test)
+		test++
 	}
-
-	fmt.Printf("%T", test2)
 }
 ```
 
-## Arrays e Slices
-- Array: Lista com tamanho definido
-- Slice: Lista com tamanho indefinido
+### Do-While?
+- executa 1 vez, depois vê se a condição é true
 
 ```go
 package main
@@ -95,38 +45,167 @@ import "fmt"
 
 func main() {
 
-	var test [4]string = [4]string{"test", "test", "test", "test"}
-	var test1 []string = []string{"test", "test", "test", "test"}
+	anExpression := false
 
-	test1 = append(test1, "cesar")
-	fmt.Println(len(test))
-	fmt.Println(cap(test))
-	fmt.Println(len(test1))
-	fmt.Println(cap(test1))
+	for ok := true; ok; ok = anExpression {
+
+		fmt.Println("PASSOU AQUI")
+
+	}
+}
+
+```
+
+### For com Range
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+	test := []string{"test1", "test2", "test3"}
+
+	for _, value := range test {
+		fmt.Println(value)
+	}
+}
+
+```
+
+## Funções
+
+### Retorno nomeado e retorno múltiplo
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	value, err := test()
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(value)
+
+}
+ 
+func test() (retornoString string, retornoErro error) {
+	retornoErro = nil
+	retornoString = "test"
+
+	return
 }
 ```
 
-## Structs
-- Idêntico ao que é definido como "objeto" nas outras linguagens
+### Passando funções por parametro e recebendo funções como retorno
+- Passando funções por parâmetro:
 
 ```go
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 
-	var user User = User{
-		name: "cesar",
-		age: 28,
-		test2: "test2",
+	funcaoTest := func(test string, testInt int) {
+		fmt.Println(test, testInt)
 	}
-	fmt.Print(user)
-}
 
-type User struct {
-	name string
-	age int
-	test2 string
+	test(funcaoTest)
+}
+ 
+func test(value func(string, int)) {
+	value("otavio", 20)
+}
+```
+
+- Recebendo funções como retorno:
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+
+	funcao := test()
+
+	funcao("otavio", 20)
+}
+ 
+func test() func(string, int) {
+	
+	funcaoTest := func(valorString string, valorInt int) {
+		fmt.Println(valorString, valorInt)
+	}
+
+	return funcaoTest
+
+}
+```
+
+### Funções Anônimas
+- faz a instância da função e já executa, ao invés de atribuir a uma variável ee executar essa variável
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	test()
+
+}
+ 
+func test() {
+
+	func(valorString string, valorInt int) {
+		fmt.Println(valorString, valorInt)
+	}("otávio", 20)
+
+}
+```
+
+### Recebendo N parâmetros em uma função
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	testParametro := func() {
+		fmt.Println("test")
+	}
+	testParametro2 := func() {
+		fmt.Println("test2")
+	}
+
+	test(testParametro, testParametro2)
+}
+ 
+func test(valoresString...func()) {
+
+	for _, x := range valoresString { 
+		x()
+	}
 }
 ```
