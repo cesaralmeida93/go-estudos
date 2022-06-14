@@ -1,13 +1,6 @@
 # 2: Fundamentos da Linguagem II(estruturas de controle com if e switch)
 
-## Variáveis
-
-### Tipos Básicos:
-- Numbers
-- Booleans
-- Strings
-
-### Como instanciar variáveis:
+## If/Else
 
 ```go
 package main
@@ -16,117 +9,166 @@ import "fmt"
 
 func main() {
 
-    var test string = "ewewewewew"
-    test1 := "ewewewewewe"
-}
-```
-
-```go
-package main
-
-import "fmt"
-
-func main() {
-
-    test1 := map[string]string{
-		"test": "test",
+	if 1 > 1 {
+		fmt.Print("true")
+	} else if 3 > 1 {
+		fmt.Print("teste")
+	} else {
+		fmt.Print("false")
 	}
-    fmt.Printf("%T", test1)
-
 }
 ```
 
-### Variáveis públicas e privadas:
-- primeira letra minúscula: privada
-- primeira letra maiúscula: pública
+## If com Init
+- usado nos casos onde a variável é criadas apenas para verificar uma condição
+- importante: o valor dela não é acessível fora do escopo do If
 
 ```go
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func main() {
 
-    test := 30
-    fmt.Printf("%T", test)
+	if retorno1, err := test1(); err != nil {
+		fmt.Println("true")
+		fmt.Println(retorno1)
+		fmt.Println(err)
+	}
+
+	if retornoTest := test(); retornoTest == "test" {
+		fmt.Println("true")
+	}
+	 
 }
 
-func test() {
-
+func test() string {
+	return "test"
 }
 
-func Test() {
+func test1() (string, error) {
+	return "test1", errors.New("test1")
+}
+```
+
+
+## Switch
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	test := "test"
+
+	switch test {
+	case "test":
+		fmt.Println("CAIU NA PRIMEIRA CONDIÇÃO")
+
+	case "test2":
+		fmt.Println("CAIU NA SEGUNDA CONDIÇÃO")
+	}
+	 
+}
+```
+
+### Aceitando vários valores nos cases
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	test := "test2"
+
+	switch test {
+	case "test", "test3":
+		fmt.Println("CAIU NA PRIMEIRA CONDIÇÃO")
+
+	case "test2":
+		fmt.Println("CAIU NA SEGUNDA CONDIÇÃO")
+	}
+	 
+}
+```
+
+
+### Fallthrough e Break
+- faz o programa "cair" nos outros cases do switch, mesmo se o programa já "entrou" no case certo.
+- o break faz o programam parar(já para sozinho sem o fallthrough)
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+
+	test := "test"
+
+	switch test {
+	case "test", "test3":
+		fmt.Println("CAIU NA PRIMEIRA CONDIÇÃO")
+		fallthrough
+
+	case "test2":
+		fmt.Println("CAIU NA SEGUNDA CONDIÇÃO")
+		fallthrough
+
+	case "test5":
+		fmt.Println("CAIU NA TERCEIRA CONDIÇÃO")
+		fallthrough
+
+	case "test6":
+		fmt.Println("CAIU NA QUARTA CONDIÇÃO")
+		break
 	
-}
-```
-
-### Tipos e tipo "any" (interface{}):
-- varável que aceita qualquer tipo de valor
-- útil para quando não se sabe o tipo do valor que será recebido
-
-```go
-package main
-
-import "fmt"
-
-func main() {
-
-	var test2 interface{}
-
-	test2 = 20
-
-	testJson := map[string]interface{}{
-		"test21323": "Test",
-		"testst": 20,
+	case "test7":
+		fmt.Println("CAIU NA QUINTA CONDIÇÃO")
 	}
-
-	fmt.Printf("%T", test2)
+	 
 }
 ```
 
-## Arrays e Slices
-- Array: Lista com tamanho definido
-- Slice: Lista com tamanho indefinido
+### Default
+- case que serã o selecionado se o valor passado não corresponder a nenhum dos outros cases
 
 ```go
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 
-	var test [4]string = [4]string{"test", "test", "test", "test"}
-	var test1 []string = []string{"test", "test", "test", "test"}
+	test := "test8"
 
-	test1 = append(test1, "cesar")
-	fmt.Println(len(test))
-	fmt.Println(cap(test))
-	fmt.Println(len(test1))
-	fmt.Println(cap(test1))
-}
-```
+	switch test {
 
-## Structs
-- Idêntico ao que é definido como "objeto" nas outras linguagens
+	case "test", "test99":
+		fmt.Println("CAIU NA PRIMEIRA CONDIÇÃO")
 
-```go
-package main
+	case "tchutchutchu":
+		fmt.Println("CAIU NA SEGUNDA CONDIÇÃO")
 
-import "fmt"
-
-func main() {
-
-	var user User = User{
-		name: "cesar",
-		age: 28,
-		test2: "test2",
+	default:
+		fmt.Println("CAIU NO DEFAULT")
+		
 	}
-	fmt.Print(user)
-}
-
-type User struct {
-	name string
-	age int
-	test2 string
+	 
 }
 ```

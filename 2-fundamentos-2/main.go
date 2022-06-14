@@ -6,52 +6,21 @@ import (
 
 func main() {
 
-	// if retorno, err := test(); err != nil {
-	// 	fmt.Println("true")
-	// 	fmt.Println(retorno)
-	// 	fmt.Print(err)
-	// }
-
-	// if 1 > 1 {
-	// 	fmt.Print("True")
-	// } else if 3 > 1 {
-	// 	fmt.Print("test")
-	// } else {
-	// 	fmt.Print("false")
-	// }
-
-	// test := "test3"
-
-	// switch test {
-
-	// case "test", "test3":
-	// 	fmt.Print("CAIU NA PRIMEIRA CONDIÇÃO")
-	// 	fallthrough
-
-	// case "test2":
-	// 	fmt.Print("CAIU NA SEGUNDA CONDIÇÃO")
-	// }
-
-
-	test := "test9"
+	test := "test8"
 
 	switch test {
 
-	case "test", "test2", "test434", "test1323":
-		fmt.Print("CAIU NA PRIMEIRA CONDIÇÃO")
+	case "test", "test99":
+		fmt.Println("CAIU NA PRIMEIRA CONDIÇÃO")
 
-	case "test3":
-		fmt.Print("CAIU NA SEGUNDA CONDIÇÃO")
-
-	case "test4":
-		fmt.Print("CAIU NA TERCEIRA CONDIÇÃO")	
+	case "tchutchutchu":
+		fmt.Println("CAIU NA SEGUNDA CONDIÇÃO")
 
 	default:
-		fmt.Print("CAIU NO DEFAULT")
+		fmt.Println("CAIU NO DEFAULT")
+		
 	}
-
+	 
 }
 
-// func test() (string, error) {
-// 	return "test", errors.New("test")
-// }
+
