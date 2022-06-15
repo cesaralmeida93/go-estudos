@@ -12,6 +12,8 @@
 - [x] 01: fundamentos-1
 - [x] 02: fundamentos-2
 - [x] 03: fundamentos-3
+- [x] 04: como-funcionam-pacotes-go
+
 
 
 Fonte: [HunCoding](https://www.youtube.com/channel/UCT5d7jUni66Oii3jNRPPOfg/featured)
