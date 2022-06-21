@@ -1,6 +1,6 @@
 # Go Estudos
 
-- estudos sobre a linguagem Go
+- estudos sobre a linguagem de programação Go(Golang)
 
 
 # Go Estudos
