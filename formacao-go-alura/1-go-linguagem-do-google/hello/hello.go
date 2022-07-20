@@ -1,8 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func main() {
-	fmt.Println("Hello World!")
-	fmt.Println("Meu primeiro programa em GO!")
+	nome := "Douglas"
+	versao := 1.1
+	fmt.Println("Olá, sr.", nome)
+	fmt.Println("Este programa está na versão", versao)
+
+	fmt.Println("O tipo da variavel versao é", reflect.TypeOf(versao))
 }
