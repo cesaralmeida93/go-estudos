@@ -18,6 +18,8 @@ go run main.go
 - a `{` sempre fica ao lado da função, não em baixo.
 - go tem várias convenções para deixar o desenvolvimento mais rápido.
 
+## 2-Trabalhando com Variáveis
+
 - o pacote `fmt` contém funções como `Println`, `Scanf` e `Scan`
 - a função `Scanf` recebe um modificador `%s` para string, `%f` para float, `%d` para int, e um ponteiro para a variável que guarará a entrada do usuário. Ex:
 
@@ -32,4 +34,39 @@ fmt.Println("O endereço da minha variável comando é: ", &comando)
 ```go
 versao := 1.1
 fmt.Println("O tipo da variavel versao é", reflect.TypeOf(versao))
+```
+
+## 3-Controlando o fluxo de input
+
+- `if` em go tem 2 características principais:
+    1. Não tem parênteses
+    2. Sempre tem que ser uma expressão que retorna um booleano
+    
+```go
+if comando == 1 {
+fmt.Println("Monitorando")
+} else if comando == 2 {
+    fmt.Println("Exibindo Logs...")
+
+} else if comando == 0 {
+    fmt.Println("Saindo do Programa")
+} else {
+    fmt.Println("Não conheço esse comando")
+}
+```
+
+- pode-se usar o `switch` no lugar do if
+- `switch` no go não utiliza a palavra `break` para cada caso.
+
+```go
+switch comando {
+	case 1:
+		fmt.Println("Monitorando")
+	case 2:
+		fmt.Println("Exibindo Logs...")
+	case 0:
+		fmt.Println("Saindo do Programa")
+	default:
+		fmt.Println("Não conheço este comando")
+	}
 ```
