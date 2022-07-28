@@ -70,3 +70,27 @@ switch comando {
 		fmt.Println("Não conheço este comando")
 	}
 ```
+
+## 4-Fazendo requisições para a web
+
+- É comum utiliar o pacote `net/http` para fazer requisições web GO
+
+- Pode-se utilizar a propriedade `StatusCode` da função GET do pacote `net/http` para verificar o status de retorno da chamada para a URL.
+
+```go
+func iniciarMonitoramento() {
+	fmt.Println("Monitorando...")
+	site := "https://random-status-code.herokuapp.com"
+	resp, _ := http.Get(site)
+
+	if resp.StatusCode == 200 {
+		fmt.Println("Site: ", site, "foi carregado com sucesso!")
+	} else {
+		fmt.Println("Site: ", site, " está com problemas!, Status Code: ", resp.StatusCode)
+	}
+}
+```
+
+
+
+
