@@ -92,5 +92,10 @@ func iniciarMonitoramento() {
 ```
 
 
+## 4-As principais coleções do GO
+
+- É comum utiliar o pacote `net/http` para fazer requisições web GO
+
+
 
 
