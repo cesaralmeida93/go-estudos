@@ -147,6 +147,66 @@ func main() {
 }
 ```
 
+## 6-Lendo arquivos
+
+- **os.Open()**: retorna ponteiro
+
+```go
+	arquivo, err := ioutil.ReadFile("sites.txt")
+
+	if err != nil {
+		fmt.Println("Ocorreu um erro:", err)
+	}
+
+	fmt.Println(arquivo)
+```
+
+- **ioutil.ReadFile()**: retorna array de bytes(que pode ser convertido para string)
+
+```go
+arquivo, err := ioutil.ReadFile("sites.txt")
+
+if err != nil {
+	fmt.Println("Ocorreu um erro:", err)
+}
+
+fmt.Println(string(arquivo))
+return sites
+```
+
+- **bufio**: permite ler a linha inteira do arquivo
+
+```go
+func lerSitesDoArquivo() []string {
+
+	var sites []string
+
+	arquivo, err := os.Open("sites.txt")
+
+	if err == nil {
+		fmt.Println("Ocorreu um erro:", err)
+	}
+
+	leitor := bufio.NewReader(arquivo)
+
+	for {
+		linha, err := leitor.ReadString('\n')
+		linha = strings.TrimSpace(linha)
+
+		sites = append(sites, linha)
+
+		if err == io.EOF {
+			break
+		}
+	}
+
+	arquivo.Close()
+
+	fmt.Println(sites)
+	return sites
+
+}
+```
 
 
 
