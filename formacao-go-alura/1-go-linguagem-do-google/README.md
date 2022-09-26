@@ -94,7 +94,61 @@ func iniciarMonitoramento() {
 
 ## 5-As principais coleções do GO
 
-- É comum utiliar o pacote `net/http` para fazer requisições web GO
+- **array**: Tamanho fixo
+
+```go
+var sites [4]string
+
+sites[0] = "https://random-status-code.herokuapp.com/"
+sites[1] = "https://www.alura.com.br"
+sites[2] = "https://www.caelum.com.br"
+
+fmt.Println(sites)
+```
+
+função `len(nome_array)` informa quantos items tem no array/slice, não necessariamente o tamanho do array/slice
+para ver a capacidade do array/slice, deve-se utilizar a função `cap(nome_array)`
+
+- **slice**: Tamanho dinâmico
+- sempre que se dá um `append` em um slice, a capacidade do mesmo dobra de tamanho(se já estiver na última posição)
+
+```go
+func exibeNomes() {
+	nomes := []string{"Douglas", "Daniel", "Bernardo"}
+	fmt.Println(nomes)
+	fmt.Println(reflect.TypeOf(nomes))
+	fmt.Println("O meu slice tem", len(nomes), "items")
+	fmt.Println("O meu slice tem capacidade para", cap(nomes), "ïtems")
+
+	nomes = append(nomes, "Aparecida")
+
+	fmt.Println(nomes)
+	fmt.Println(reflect.TypeOf(nomes))
+	fmt.Println("O meu slice tem", len(nomes), "items")
+	fmt.Println("O meu slice tem capacidade para", cap(nomes), "items")
+}
+```
+
+- ao se fazer um `for`, pode-se utilizar a palavra reservada `range`
+
+```go
+func main() {
+	var frutas [4]string
+	frutas[0] = "Abacaxi"
+	frutas[1] = "Laranja"
+	frutas[2] = "Morango"
+
+	for k, v := range frutas {
+		fmt.Println(frutas[k])
+		fmt.Println(v)
+	}
+
+	fmt.Println(frutas[3])
+}
+```
+
+
+
 
 
 
