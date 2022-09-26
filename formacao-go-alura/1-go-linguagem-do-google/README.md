@@ -208,8 +208,33 @@ func lerSitesDoArquivo() []string {
 }
 ```
 
+## 7-Escrevendo Arquivos
 
+- **os.OpenFile**: permite passar flags e permissões para abrir o arquivo
 
+```go
+arquivo, err := os.OpenFile("log.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 
+if err != nil {
+	fmt.Println("Ocorreu um erro:", err)
+}
 
+fmt.Println(arquivo)
+```
 
+- **os.File.WriteString()**: permite escrever no arquivo
+
+```go
+func registraLog(site string, status bool) {
+
+	arquivo, err := os.OpenFile("log.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	arquivo.WriteString(time.Now().Format("02/01/2006 15:04:05") + " - " + site + " - online:" + strconv.FormatBool(status) + "\n")
+
+	arquivo.Close()
+}
+```
