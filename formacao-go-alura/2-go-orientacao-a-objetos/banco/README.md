@@ -177,3 +177,32 @@ func main() {
 }
 ```
 
+## 4-Composição e encapsulamento
+
+- pode-se colocar uma struct referenciando outra struct em go, isso chama-se `composição`
+
+```go
+package clientes
+
+type Titular struct {
+	Nome      string
+	CPF       string
+	Profissao string
+}
+
+package contas
+
+import "banco/clientes"
+
+type ContaCorrente struct {
+	Titular        clientes.Titular
+	NumertoAgencia int
+	NumeroConta    int
+	Saldo          float64
+}
+
+clienteBruno := clientes.Titular{"Bruno", "123.123.123.12", "Desenvolvedor"}
+contaBruno := contas.ContaCorrente{clienteBruno, 123, 123456, 100}
+
+fmt.Println(contaBruno)
+```
