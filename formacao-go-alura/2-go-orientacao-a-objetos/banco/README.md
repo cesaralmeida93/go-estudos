@@ -206,3 +206,36 @@ contaBruno := contas.ContaCorrente{clienteBruno, 123, 123456, 100}
 
 fmt.Println(contaBruno)
 ```
+
+
+## 5-Interface e novo tipo de conta
+
+- pode-se criar uma interface em go, e obrigar as structs que assinam essa interface a utilizar seus métodos
+- Uma interface é a definição de um conjunto de métodos comuns a um ou mais tipos. É o que permite a criação de tipos polimórficos em Go.
+
+```go
+package main
+
+import (
+	"banco/contas"
+	"fmt"
+)
+
+func PagarBoleto(conta verificarConta, valorDoBoleto float64) {
+	conta.Sacar(valorDoBoleto)
+}
+
+type verificarConta interface {
+	Sacar(valor float64) string
+}
+
+func main() {
+	contaLuisa := contas.ContaCorrente{}
+	contaLuisa.Depositar(500)
+	PagarBoleto(&contaLuisa, 400)
+
+	fmt.Println(contaLuisa.ObterSaldo())
+
+}
+
+``` 
