@@ -14,6 +14,7 @@
 - [x] 03: fundamentos-3
 - [x] 04: como-funcionam-pacotes-go
 - [x] 05: introdução-ponteiros-go
+- []
 
 
 
